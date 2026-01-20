@@ -1,0 +1,542 @@
+:root {
+    --primary-blue: #0a1428;
+    --secondary-blue: #1e2a45;
+    --gold: #c8aa6e;
+    --gold-dark: #937341;
+    --red: #c44133;
+    --red-dark: #7a2820;
+    --blue: #0099cc;
+    --blue-dark: #006699;
+    --text-light: #f0e6d2;
+    --text-dark: #a09b8c;
+    --transition-speed: 0.5s;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Beaufort for LOL', serif;
+    background-color: var(--primary-blue);
+    color: var(--text-light);
+    background-image: 
+        radial-gradient(circle at 10% 20%, rgba(10, 20, 40, 0.8) 0%, transparent 20%),
+        radial-gradient(circle at 90% 80%, rgba(28, 58, 112, 0.6) 0%, transparent 20%);
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+header {
+    text-align: center;
+    padding: 20px 0;
+    margin-bottom: 30px;
+    border-bottom: 2px solid var(--gold);
+    position: relative;
+}
+
+.lol-title {
+    font-size: 3.5rem;
+    color: var(--gold);
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    text-shadow: 0 0 10px rgba(200, 170, 110, 0.5);
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    color: var(--text-dark);
+    font-style: italic;
+}
+
+/* Páginas */
+.page {
+    display: block;
+    animation: fadeIn 0.8s ease forwards;
+}
+
+.page.hidden {
+    display: none;
+}
+
+.section {
+    background-color: rgba(30, 42, 69, 0.8);
+    border-radius: 10px;
+    padding: 25px;
+    border: 1px solid var(--gold-dark);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+}
+
+.section-title {
+    color: var(--gold);
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    text-align: center;
+    border-bottom: 1px solid var(--gold-dark);
+    padding-bottom: 10px;
+}
+
+/* Sección de jugadores */
+.players-input-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.input-group {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+input {
+    padding: 12px 15px;
+    border: 1px solid var(--gold-dark);
+    border-radius: 5px;
+    background-color: var(--primary-blue);
+    color: var(--text-light);
+    font-size: 1rem;
+    flex: 1;
+    min-width: 200px;
+    max-width: 300px;
+}
+
+input:focus {
+    outline: none;
+    border-color: var(--gold);
+    box-shadow: 0 0 5px var(--gold);
+}
+
+.btn {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 5px;
+    font-family: 'Beaufort for LOL', serif;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.btn-large {
+    padding: 15px 30px;
+    font-size: 1.2rem;
+}
+
+.btn-primary {
+    background-color: var(--gold);
+    color: var(--primary-blue);
+}
+
+.btn-primary:hover {
+    background-color: var(--gold-dark);
+    transform: translateY(-2px);
+}
+
+.btn-danger {
+    background-color: var(--red);
+    color: var(--text-light);
+}
+
+.btn-danger:hover {
+    background-color: var(--red-dark);
+    transform: translateY(-2px);
+}
+
+.btn-success {
+    background-color: var(--blue);
+    color: var(--text-light);
+}
+
+.btn-success:hover {
+    background-color: var(--blue-dark);
+    transform: translateY(-2px);
+}
+
+.players-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 15px;
+    justify-content: center;
+    min-height: 60px;
+}
+
+.player-tag {
+    background-color: rgba(200, 170, 110, 0.2);
+    border: 1px solid var(--gold);
+    border-radius: 20px;
+    padding: 8px 15px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    animation: fadeIn 0.3s ease forwards;
+}
+
+.player-tag i {
+    cursor: pointer;
+    color: var(--red);
+    transition: color 0.2s;
+}
+
+.player-tag i:hover {
+    color: var(--red-dark);
+}
+
+.players-count {
+    text-align: center;
+    color: var(--text-dark);
+    font-size: 1.1rem;
+    margin-top: 10px;
+}
+
+#players-count {
+    color: var(--gold);
+    font-weight: bold;
+    font-size: 1.3rem;
+}
+
+/* Sección de equipos con animación */
+.teams-animation-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+
+.team-animation {
+    flex: 1;
+    min-width: 300px;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    transition: all 0.5s ease;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.team-animation.active {
+    transform: scale(1.05);
+    box-shadow: 0 0 30px rgba(200, 170, 110, 0.3);
+    border: 2px solid var(--gold);
+}
+
+.team-1 {
+    background-color: rgba(0, 153, 204, 0.1);
+    border: 2px solid var(--blue);
+}
+
+.team-2 {
+    background-color: rgba(196, 65, 51, 0.1);
+    border: 2px solid var(--red);
+}
+
+.animation-title {
+    font-size: 2rem;
+    text-align: center;
+    padding: 10px;
+    border-radius: 5px;
+    color: var(--text-light);
+}
+
+.team-1 .animation-title {
+    background-color: rgba(0, 153, 204, 0.3);
+}
+
+.team-2 .animation-title {
+    background-color: rgba(196, 65, 51, 0.3);
+}
+
+.team-players-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    min-height: 250px;
+    justify-content: center;
+}
+
+.player-card-animated {
+    background-color: rgba(10, 20, 40, 0.6);
+    border: 1px solid var(--gold-dark);
+    border-radius: 5px;
+    padding: 15px;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: playerAppear 0.8s ease forwards;
+}
+
+@keyframes playerAppear {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.player-card-animated .player-name {
+    font-size: 1.3rem;
+    color: var(--text-light);
+}
+
+.animation-status {
+    text-align: center;
+    padding: 15px;
+    background-color: rgba(10, 20, 40, 0.6);
+    border-radius: 10px;
+    border: 1px solid var(--gold-dark);
+    margin: 20px 0;
+    font-size: 1.2rem;
+    color: var(--text-light);
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Sección de líneas con animación */
+.lanes-animation-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.lanes-team {
+    flex: 1;
+    min-width: 300px;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.lanes-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.lane-assignment {
+    background-color: rgba(10, 20, 40, 0.6);
+    border: 1px solid var(--gold-dark);
+    border-radius: 5px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    opacity: 0;
+    transform: translateX(-20px);
+    animation: laneAppear 0.8s ease forwards;
+}
+
+@keyframes laneAppear {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.lane-icon {
+    width: 60px;
+    height: 60px;
+    background-color: var(--secondary-blue);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid var(--gold);
+    font-size: 1.5rem;
+    color: var(--gold);
+}
+
+.lane-icon img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+}
+
+.lane-info {
+    flex: 1;
+}
+
+.lane-name {
+    font-size: 1.4rem;
+    color: var(--gold);
+    margin-bottom: 5px;
+}
+
+.lane-player {
+    font-size: 1.2rem;
+    color: var(--text-light);
+}
+
+.prank-message {
+    text-align: center;
+    font-size: 1.5rem;
+    color: var(--red);
+    padding: 20px;
+    background-color: rgba(10, 20, 40, 0.8);
+    border-radius: 10px;
+    border: 2px solid var(--red);
+    margin: 20px 0;
+}
+
+.prank-message i {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    display: block;
+}
+
+/* Controles de página */
+.page-controls {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+/* Modal */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+    animation: fadeIn 0.3s ease forwards;
+}
+
+.modal-overlay.hidden {
+    display: none;
+}
+
+.modal-content {
+    background-color: var(--primary-blue);
+    border: 3px solid var(--gold);
+    border-radius: 10px;
+    width: 90%;
+    max-width: 500px;
+    padding: 0;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+    animation: scaleIn 0.3s ease forwards;
+}
+
+.modal-header {
+    background-color: rgba(196, 65, 51, 0.3);
+    padding: 20px;
+    border-bottom: 2px solid var(--red);
+    text-align: center;
+    color: var(--text-light);
+}
+
+.modal-header i {
+    font-size: 3rem;
+    color: var(--red);
+    margin-bottom: 10px;
+}
+
+.modal-header h3 {
+    font-size: 1.8rem;
+    color: var(--gold);
+}
+
+.modal-body {
+    padding: 30px 20px;
+    text-align: center;
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: var(--text-light);
+}
+
+.modal-body p {
+    margin-bottom: 15px;
+}
+
+#odd-count {
+    font-weight: bold;
+    color: var(--gold);
+    font-size: 1.4rem;
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+    border-top: 1px solid var(--gold-dark);
+}
+
+/* Animaciones generales */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes scaleIn {
+    from { transform: scale(0.8); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+/* Clases para ocultar/mostrar */
+.hidden {
+    display: none !important;
+}
+
+footer {
+    text-align: center;
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid var(--gold-dark);
+    color: var(--text-dark);
+    font-size: 0.9rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .lol-title {
+        font-size: 2.5rem;
+    }
+    
+    .teams-animation-container,
+    .lanes-animation-container {
+        flex-direction: column;
+    }
+    
+    .team-animation,
+    .lanes-team {
+        max-width: 100%;
+    }
+    
+    .btn-large {
+        width: 100%;
+        max-width: 300px;
+    }
+    
+    .modal-footer {
+        flex-direction: column;
+    }
+    
+    .modal-footer .btn {
+        width: 100%;
+    }
+}

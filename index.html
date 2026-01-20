@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LOL Team Generator Pro</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Beaufort+for+LOL:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1 class="lol-title">LOL Team Generator</h1>
+            <p class="subtitle">Partida Personalizada.</p>
+        </header>
+
+        <!-- Sección 1: Ingreso de jugadores -->
+        <section class="page" id="page-players">
+            <div class="section players-section">
+                <h2 class="section-title">Jugadores</h2>
+                <div class="players-input-container">
+                    <div class="input-group">
+                        <input type="text" id="player-input" placeholder="Nombre del jugador" maxlength="20">
+                        <button class="btn btn-primary" id="add-player">
+                            <i class="fas fa-plus"></i> Agregar Jugador
+                        </button>
+                        <button class="btn btn-danger" id="clear-players">
+                            <i class="fas fa-trash"></i> Limpiar Lista
+                        </button>
+                    </div>
+                    
+                    <div class="players-list" id="players-list">
+                        <!-- Los jugadores se agregarán aquí dinámicamente -->
+                    </div>
+                    
+                    <div class="players-count">
+                        <p>Jugadores agregados: <span id="players-count">0</span></p>
+                    </div>
+                </div>
+                
+                <div class="page-controls">
+                    <button class="btn btn-primary btn-large" id="start-teams">
+                        <i class="fas fa-users"></i> Generar Equipos
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección 2: Generación de equipos -->
+        <section class="page hidden" id="page-teams">
+            <div class="section teams-section">
+                <h2 class="section-title">Creando Equipos</h2>
+                
+                <div class="teams-animation-container">
+                    <!-- Equipo 1 -->
+                    <div class="team-animation team-1" id="team1-animation">
+                        <h3 class="team-title animation-title">Equipo 1</h3>
+                        <div class="team-players-container" id="team1-players">
+                            <!-- Jugadores aparecerán aquí con animación -->
+                        </div>
+                    </div>
+                    
+                    <!-- Equipo 2 -->
+                    <div class="team-animation team-2" id="team2-animation">
+                        <h3 class="team-title animation-title">Equipo 2</h3>
+                        <div class="team-players-container" id="team2-players">
+                            <!-- Jugadores aparecerán aquí con animación -->
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="animation-status" id="animation-status">
+                    Preparando asignación de equipos...
+                </div>
+                
+                <div class="page-controls hidden" id="teams-controls">
+                    <button class="btn btn-success btn-large" id="start-lanes">
+                        <i class="fas fa-map-marked-alt"></i> Generar Líneas
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección 3: Asignación de líneas -->
+        <section class="page hidden" id="page-lanes">
+            <div class="section lanes-section">
+                <h2 class="section-title">Asignando Líneas</h2>
+                
+                <!-- Mensaje para pocos jugadores -->
+                <div class="prank-message hidden" id="prank-message">
+                    <i class="fas fa-users-slash"></i>
+                    <p>Solo jugáis vosotros pringaos?</p>
+                </div>
+                
+                <div class="lanes-animation-container">
+                    <!-- Líneas del equipo 1 -->
+                    <div class="lanes-team" id="lanes-team1">
+                        <h3 class="team-title">Equipo 1</h3>
+                        <div class="lanes-container" id="lanes-container-1">
+                            <!-- Las líneas se asignarán aquí con animación -->
+                        </div>
+                    </div>
+                    
+                    <!-- Líneas del equipo 2 -->
+                    <div class="lanes-team" id="lanes-team2">
+                        <h3 class="team-title">Equipo 2</h3>
+                        <div class="lanes-container" id="lanes-container-2">
+                            <!-- Las líneas se asignarán aquí con animación -->
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="animation-status" id="lanes-status">
+                    Preparando asignación de líneas...
+                </div>
+                
+                <div class="page-controls" id="lanes-controls">
+                    <button class="btn btn-primary btn-large" id="restart">
+                        <i class="fas fa-redo"></i> Nueva Partida
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Modal para aviso de jugadores impares -->
+        <div class="modal-overlay hidden" id="odd-modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <h3>Aviso: Número Impar de Jugadores</h3>
+                </div>
+                <div class="modal-body">
+                    <p>Hay un número impar de jugadores (<span id="odd-count">0</span> jugadores).</p>
+                    <p>Un equipo tendrá un jugador más que el otro.</p>
+                    <p>¿Quieres continuar con la generación de equipos?</p>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-danger" id="cancel-teams">
+                        <i class="fas fa-times"></i> Cancelar
+                    </button>
+                    <button class="btn btn-success" id="confirm-teams">
+                        <i class="fas fa-check"></i> Continuar
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>Aplicación creada para partidas personalizadas de League of Legends</p>
+            <p>© Esta aplicación ha sido creada por Chetin y Deepseek :)</p>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
